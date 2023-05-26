@@ -1,0 +1,41 @@
+<mat-horizontal-stepper #horizontalStepper ngClass="{{
+        Stepper.ngClass + horizontalStepper.selectedIndex ||
+            'last-edited-step-' + horizontalStepper.selectedIndex
+    }}">
+    <!-- <ng-template matStepperIcon="edit">
+    <mat-icon>done</mat-icon>
+  </ng-template> -->
+
+    <mat-step *ngFor="let step of Steps" [stepControl]="step.stepControl">
+        <ng-template matStepLabel>{{ step.stepLabel }}</ng-template>
+        <ng-container [ngTemplateOutlet]="selectedTemplateRef"> </ng-container>
+    </mat-step>
+</mat-horizontal-stepper>
+
+<div class="buttonbunch footer bg-transparent border-top py-4 mb-3">
+    <div class="">
+        <button class="btn btn-light btn-back" (click)="goBack(claimsubmissionStepper)" type="button"
+            *ngIf="claimsubmissionStepper.selectedIndex !== 0">
+            <img src="{{ 'chevron-left.svg' | relativeAsset }}" class="chevron-footer" alt="Alternative Text" />
+            {{'Shared.UI.DynamicStepper.Button.Back' | translate}}
+        </button>
+
+        <button *ngIf="claimsubmissionStepper.selectedIndex == 1" class="btn btn-primary float-right"
+            (click)="goForward(claimsubmissionStepper)" type="button">
+            {{'Shared.UI.DynamicStepper.Button.Next' | translate}}
+            <img src="{{ 'chevron-right.svg' | relativeAsset }}" class="chevron-footer" alt="Alternative Text" />
+        </button>
+
+        <button [disabled]="!isItemToClaimExists" *ngIf="claimsubmissionStepper.selectedIndex == 0"
+            class="btn btn-primary float-right" (click)="goForward(claimsubmissionStepper)" type="button">
+            {{'Shared.UI.DynamicStepper.Button.Next' | translate}}
+            <img src="{{ 'chevron-right.svg' | relativeAsset }}" class="chevron-footer" alt="Alternative Text" />
+        </button>
+
+        <button *ngIf="claimsubmissionStepper.selectedIndex == 2" class="btn btn-primary btn-submit float-right"
+            routerLink="/Claims/submit" (click)="submit()" type="button">
+            {{'Shared.UI.DynamicStepper.Button.Submit' | translate}}
+            <img *ngIf="isLoading" src="{{ 'spinner-load.gif' | relativeAsset }}" />
+        </button>
+    </div>
+</div>

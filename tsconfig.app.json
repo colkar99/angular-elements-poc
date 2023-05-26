@@ -10,6 +10,12 @@
     "src/polyfills.ts"
   ],
   "include": [
-    "src/**/*.d.ts"
+    "src/**/*.ts",
+    "projects/elements/src/claim-builder/compile.ts",
+    "projects/elements/src/claim-type/compile.ts"
+  ],
+  "exclude": [
+    "src/test.ts",
+    "src/**/*.spec.ts"
   ]
 }

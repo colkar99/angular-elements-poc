@@ -1,0 +1,335 @@
+<div class="col-md-12 p-0 h-md-100">
+    <div class="d-flex flex-column">
+        <div class="d-flex flex-row">
+            <a class="text-primary" (click)="goBack()">
+                <div class="d-flex flex-row">
+                    <i class="bi bi-arrow-left"></i>
+                    <h3 class="pl-2">{{'ClaimType.Common.BackToList'| translate}}</h3>
+                </div>
+            </a>
+        </div>
+
+        <div class="p-2 d-flex">
+            <div class="mr-auto">
+                <h3 class="display-4">{{title}}</h3>
+            </div>
+            <div class="d-flex flex-row py-2 px-5">
+                <div>
+                    <button *ngIf="pageType == Page.Create" type="button" class="d-flex btn btn-lg btn-danger mr-4"
+                        (click)="goBack()">
+                        <i class="pr-2 bi bi-x-lg"></i>
+                        {{'ClaimType.Common.Cancel' | translate}}
+                    </button>
+
+                    <button *ngIf="pageType == Page.Edit && claimType?.status == 1" (click)="deleteClaimType()"
+                        type="button" class="d-flex btn btn-lg btn-secondary mr-4">
+                        <i class="pr-2 bi bi-trash"></i>
+                        {{'ClaimType.Common.Delete' | translate}}
+                    </button>
+                </div>
+                <div>
+                    <div ngbDropdown class="d-inline-block">
+                        <button class="btn btn-lg btn-success" id="dropdownBasic1" ngbDropdownToggle>
+                            <i class="pr-2 bi bi-check-lg"></i>
+                            {{'ClaimType.Common.Save' | translate}}
+                        </button>
+
+                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                            <button ngbDropdownItem (click)="submit(ClaimTypeSaveMethods.saveAndContinue)">
+                                <i class="pr-2 bi bi-check-lg"></i>
+                                {{'ClaimType.common.savecontinue' | translate}}
+                            </button>
+                            <button ngbDropdownItem (click)="submit(ClaimTypeSaveMethods.saveAndNew)">
+                                <i class="pr-2 bi bi-plus-lg"></i>
+                                {{'ClaimType.common.save&new' | translate}}
+                            </button>
+                            <div class="dropdown-divider"></div>
+                            <button ngbDropdownItem (click)="submit(ClaimTypeSaveMethods.saveAndClose)">
+                                <i class="pr-2 bi bi-check-circle"></i>
+                                {{'ClaimType.Common.SaveClose' | translate}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="d-md-flex h-md-100" *blockUI="'block-all'">
+    <div class="col-md-9 p-0" [formGroup]="claimTypeForm">
+        <div class="card card-box-shadow">
+            <div class="card-body">
+                <div class="d-flex bd-highlight flex-column p-5">
+                    <div class="d-flex flex-column bd-highlight">
+                        <div class="bd-highlight py-3">
+
+                            <ngb-alert *ngIf="errorMessage.length > 0" type="danger" (click)="errorMessage = ''">
+                                {{errorMessage}}</ngb-alert>
+                            <div class="row p-2 hide-sm">
+                                <div class="col-md-4">
+                                    <h3>{{'ClaimType.ValidationOption.SectionLabel' | translate}}</h3>
+                                </div>
+                                <div class="col-md-2">
+                                    <h3>{{'ClaimType.ValidationOption.HiddenLabel' | translate}}</h3>
+                                </div>
+                                <div class="col-md-2">
+                                    <h3>{{'ClaimType.ValidationOption.OptionalLabel' | translate}}</h3>
+                                </div>
+                                <div class="col-md-2">
+                                    <h3>{{'ClaimType.ValidationOption.RequiredLabel' | translate}}</h3>
+                                </div>
+                            </div>
+                            <div class="row p-2">
+                                <div class="col-md-4">
+                                    <h3 class="required-field text-muted">{{'ClaimType.Order.soldto' | translate}}</h3>
+                                </div>
+                                <div class="col-md-8">
+                                    <mat-radio-group aria-label="Select an option" ng-required="true"
+                                        formControlName="companyValidationOption">
+                                        <mat-radio-button class="ml-3 text-muted" [value]="1"
+                                            style="margin-right: 23%;">
+                                            <span
+                                                class="d-none d-sm-block d-md-none">{{'ClaimType.ValidationOption.HiddenLabel'
+                                                | translate}}</span>
+                                        </mat-radio-button>
+                                        <mat-radio-button class="ml-10 text-muted" [value]="2"
+                                            style="margin-right: 22%;">
+                                            <span
+                                                class="d-none d-sm-block d-md-none">{{'ClaimType.ValidationOption.OptionalLabel'
+                                                | translate}}</span>
+                                        </mat-radio-button>
+                                        <mat-radio-button class="mr-5 text-muted" [value]="3">
+                                            <span
+                                                class="d-none d-sm-block d-md-none">{{'ClaimType.ValidationOption.RequiredLabel'
+                                                | translate}}</span>
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+
+                                </div>
+                            </div>
+                            <div class="row p-2">
+                                <div class="col-md-4">
+                                    <h3 class="required-field text-muted">{{'ClaimType.ValidationType.Vertical' |
+                                        translate}}</h3>
+                                </div>
+                                <div class="col-md-8">
+                                    <mat-radio-group aria-label="Select an option"
+                                        formControlName="verticalValidationOption" ng-required="true">
+                                        <mat-radio-button class="ml-3 text-muted" [value]="1"
+                                            style="margin-right: 23%;">
+                                            <span
+                                                class="d-none d-sm-block d-md-none">{{'ClaimType.ValidationOption.HiddenLabel'
+                                                | translate}}</span>
+                                        </mat-radio-button>
+                                        <mat-radio-button class="ml-10 text-muted" [value]="2"
+                                            style="margin-right: 22%;">
+                                            <span
+                                                class="d-none d-sm-block d-md-none">{{'ClaimType.ValidationOption.OptionalLabel'
+                                                | translate}}</span>
+                                        </mat-radio-button>
+                                        <mat-radio-button class="mr-5 text-muted" [value]="3">
+                                            <span
+                                                class="d-none d-sm-block d-md-none">{{'ClaimType.ValidationOption.RequiredLabel'
+                                                | translate}}</span>
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                            </div>
+                            <div class="row p-2">
+                                <div class="col-md-4">
+                                    <h3 class="required-field text-muted">{{'ClaimType.ValidationType.Invoice' |
+                                        translate}}</h3>
+                                </div>
+                                <div class="col-md-8">
+                                    <mat-radio-group aria-label="Select an option"
+                                        formControlName="invoiceValidationOption" ng-required="true">
+                                        <mat-radio-button class="ml-3 text-muted" [value]="1"
+                                            style="margin-right: 23%;">
+                                            <span
+                                                class="d-none d-sm-block d-md-none">{{'ClaimType.ValidationOption.HiddenLabel'
+                                                | translate}}</span>
+                                        </mat-radio-button>
+                                        <mat-radio-button class="ml-10 text-muted" [value]="2"
+                                            style="margin-right: 22%;">
+                                            <span
+                                                class="d-none d-sm-block d-md-none">{{'ClaimType.ValidationOption.OptionalLabel'
+                                                | translate}}</span>
+                                        </mat-radio-button>
+                                        <mat-radio-button class="mr-5 text-muted" [value]="3">
+                                            <span
+                                                class="d-none d-sm-block d-md-none">{{'ClaimType.ValidationOption.RequiredLabel'
+                                                | translate}}</span>
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                            </div>
+                            <div class="row p-2">
+                                <div class="col-md-4">
+                                    <h3 class="required-field text-muted">{{'ClaimType.ValidationType.ClaimSharing' |
+                                        translate}}</h3>
+                                </div>
+                                <div class="col-md-8">
+                                    <mat-radio-group aria-label="Select an option"
+                                        formControlName="sharingValidationOption" ng-required="true">
+                                        <mat-radio-button class="ml-3 text-muted" [value]="1"
+                                            style="margin-right: 23%;">
+                                            <span
+                                                class="d-none d-sm-block d-md-none">{{'ClaimType.ValidationOption.HiddenLabel'
+                                                | translate}}</span>
+                                        </mat-radio-button>
+                                        <mat-radio-button class="ml-10 text-muted" [value]="2"
+                                            style="margin-right: 22%;">
+                                            <span
+                                                class="d-none d-sm-block d-md-none">{{'ClaimType.ValidationOption.OptionalLabel'
+                                                | translate}}</span>
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                            </div>
+                            <div class="row p-2">
+                                <div class="col-md-4">
+                                    <h3 class="required-field text-muted">{{'ClaimType.ValidationType.SKUUpload' |
+                                        translate}}</h3>
+                                </div>
+                                <div class="col-md-8">
+                                    <mat-radio-group aria-label="Select an option" formControlName="skuValidationOption"
+                                        ng-required="true">
+                                        <mat-radio-button class="ml-3 text-muted" [value]="1"
+                                            style="margin-right: 23%;">
+                                            <span
+                                                class="d-none d-sm-block d-md-none">{{'ClaimType.ValidationOption.HiddenLabel'
+                                                | translate}}</span>
+                                        </mat-radio-button>
+                                        <mat-radio-button class="ml-10 text-muted" [value]="2"
+                                            style="margin-right: 22%;">
+                                            <span
+                                                class="d-none d-sm-block d-md-none">{{'ClaimType.ValidationOption.OptionalLabel'
+                                                | translate}}</span>
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                            </div>
+                            <div class="row p-2">
+                                <div class="col-md-4">
+                                    <h3 class="required-field text-muted">{{'ClaimType.ValidationType.SalesManagerBonus' |
+                                        translate}}</h3>
+                                </div>
+                                <div class="col-md-8">
+                                    <mat-radio-group aria-label="Select an option" formControlName="salesManagerBonusValidationOption"
+                                        ng-required="true">
+                                        <mat-radio-button class="ml-3 text-muted" [value]="1"
+                                            style="margin-right: 23%;">
+                                            <span
+                                                class="d-none d-sm-block d-md-none">{{'ClaimType.ValidationOption.HiddenLabel'
+                                                | translate}}</span>
+                                        </mat-radio-button>
+                                        <mat-radio-button class="ml-10 text-muted" [value]="2"
+                                            style="margin-right: 22%;">
+                                            <span
+                                                class="d-none d-sm-block d-md-none">{{'ClaimType.ValidationOption.OptionalLabel'
+                                                | translate}}</span>
+                                        </mat-radio-button>
+                                        <mat-radio-button class="mr-5 text-muted" [value]="3">
+                                            <span
+                                                class="d-none d-sm-block d-md-none">{{'ClaimType.ValidationOption.RequiredLabel'
+                                                | translate}}</span>
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-3 p-0 h-md-100" [formGroup]="claimTypeForm">
+        <div class="d-md-flex align-items-center h-md-100 p-5">
+            <div class="d-flex flex-column form-group bd-highlight">
+                <div>
+                    <div class="p-2 bd-highlight">
+                        <label class="required-field text-muted">{{'ClaimType.Name' | translate}}</label>
+                        <input class="form-control" formControlName="name" maxlength="250" />
+                    </div>
+
+                    <div class="p-2 bd-highlight">
+                        <label class="required-field text-muted">{{'ClaimType.Status' | translate}}</label>
+                        <select class="form-control" formControlName="status">
+                            <option disabled>
+                                {{'ClaimType.Select' | translate}}
+                            </option>
+                            <option *ngIf="(!currentStatus || currentStatus == 1)" [ngValue]="1">
+                                {{'ClaimType.ValidationStatus.Draft' | translate}}
+                            </option>
+                            <option [ngValue]="2">{{'ClaimType.ValidationStatus.Active' | translate}}</option>
+                            <option *ngIf="(currentStatus == 2 || currentStatus == 3)" [ngValue]="3">
+                                {{'ClaimType.ValidationStatus.Archived' | translate}}</option>
+                        </select>
+                    </div>
+                    <div *ngIf="claimTypeForm.get('roles')" class="p-2 bd-highlight">
+                        <label class="required-field text-muted">{{'ClaimType.Roles.Label'|translate}}</label>
+                        <mat-form-field [class.chip-disabled]="
+                        claimTypeForm.get('roles').disabled
+                            " class="w-100 bg-white" [ngClass]="formFieldClasses" appearance="fill">
+                            <mat-chip-list #rolesChipList aria-label="Role selection">
+                                <mat-chip *ngFor="let roleId of selectedRoles" [removable]="true"
+                                    [disabled]="claimTypeForm.get('roles').disabled" (removed)="roleRemoved(roleId)">
+                                    {{ getRoleById(roleId)?.name }}
+                                    <mat-icon matChipRemove>
+                                        <i class="bi bi-x" style="position: absolute; bottom: 3px;"></i>
+                                    </mat-icon>
+                                </mat-chip>
+                                <input  placeholder="{{'ClaimType.Placeholder.SelectRoles' | translate}}" #rolesInput
+                                    [matAutocomplete]="auto" [matChipInputFor]="rolesChipList"
+                                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="roleAdded($event)"
+                                    [disabled]="claimTypeForm.get('roles').disabled" (input)="chipInputChanged($event)"
+                                    (blur)="chipInputBlurred($event)" />
+                            </mat-chip-list>
+                            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="roleSelected($event)">
+                                <mat-option *ngFor="let role of filteredRoles" [value]="role">
+                                    {{ role.name }}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                        <div *ngIf="isLoading" class="spinner-border text-dark" role="status" >
+                            <span class="visually-hidden"></span>
+                        </div>
+                    </div>
+                    <div class="p-2 bd-highlight">
+                        <label class="required-field text-muted">{{'ClaimType.auditable' | translate}}</label>
+                        <select class="form-control" formControlName="auditable">
+                            <option disabled>{{ 'ClaimType.AuditStatus.Select' | translate }}</option>
+                            <option [ngValue]="true">{{'ClaimType.ValidationStatus.true' | translate}}</option>
+                            <option [ngValue]="false">{{'ClaimType.ValidationStatus.false' | translate}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="p-2" *ngIf="pageType != Page.Create">
+                        <div class="d-flex flex-column p-2">
+                            <label class="text-muted">{{'ClaimType.CreatedBy' | translate}}</label>
+                            <label class="text-muted">{{claimType?.createdByName}}</label>
+                        </div>
+                        <div class="d-flex flex-column p-2">
+                            <label class="text-muted">{{'ClaimType.UpdatedBy' | translate}}</label>
+                            <label class="text-muted">{{claimType?.updatedByName}}</label>
+                        </div>
+                        <div class="d-flex flex-column p-2">
+                            <label class="text-muted">{{'ClaimType.CreatedOn' | translate}}</label>
+                            <label class="text-muted">{{claimType?.createdOnUtc | date: 'full'}}</label>
+                        </div>
+                        <div class="d-flex flex-column p-2">
+                            <label class="text-muted">{{'ClaimType.LastModified' | translate}}</label>
+                            <label class="text-muted">{{claimType?.createdOnUtc | date: 'full'}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,110 @@
+<ng-container>
+    <div class="row">
+        <div class="col-md-6">
+            <ngb-alert *ngIf="errorMessage.length > 0" type="danger" (click)="errorMessage = ''">
+                {{errorMessage}}</ngb-alert>
+        </div>
+    </div>
+
+    <div class="d-md-flex flex-column" *blockUI="'block-all'">
+        <table id="commonTable" class="table table-hover m-0 p-0 w-100" matSort (matSortChange)="sortData($event)">
+            <thead class="thead-light">
+                <tr>
+                    <th class="w-40" scope="col" mat-sort-header="name">{{'ClaimType.Name'|translate}}</th>
+                    <th scope="col" mat-sort-header="createdOnUtc">{{'ClaimType.CreatedOn'|translate}}</th>
+                    <th scope="col">{{'ClaimType.CreatedBy'|translate}}</th>
+                    <th scope="col">{{'ClaimType.LastModified'|translate}}</th>
+                    <th scope="col">{{'ClaimType.Type'|translate}}</th>
+                    <th scope="col">{{'ClaimType.Status'|translate}}</th>
+                    <th scope="col">{{'ClaimType.Actions'|translate}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let claimType of (claimTypes$ | async)?.data">
+                    <td data-label="Name" class="align-middle text-break">
+                        <div class="pl-2">
+                            {{claimType.name | truncate:100}}
+                        </div>
+                    </td>
+                    <td data-label="Created" class="align-middle">
+                        <div>
+                            {{claimType.createdOnUtc | date: 'dd/MM/yyyy'}}
+                        </div>
+                    </td>
+                    <td data-label="created-by" class="align-middle">
+                        <div class="">
+                            {{claimType.createdByName}}
+
+                        </div>
+                    </td>
+                    <td data-label="last-modified" class="align-middle">
+                        <div>
+                            {{claimType.updatedOnUtc | date: 'dd/MM/yyyy'}}
+                        </div>
+                    </td>
+                    <td data-label="type" class="align-middle">
+                        <span class="badge bg-secondary text-white"
+                            *ngIf="!claimType?.isCustom">{{'ClaimType.Types.Standard' | translate}}</span>
+                        <span class="badge bg-primary  text-white"
+                            *ngIf="claimType?.isCustom">{{'ClaimType.Types.Custom' | translate}}</span>
+                    </td>
+                    <td data-label="Status" class="align-middle">
+                        <ng-container [ngSwitch]="claimType?.status">
+                            <span *ngSwitchCase="Status.Draft"
+                                class="badge badge-info">{{'ClaimType.ValidationStatus.Draft'|translate}}</span>
+                            <span *ngSwitchCase="Status.Archived"
+                                class="badge badge-dark">{{'ClaimType.ValidationStatus.Archived'|translate}}</span>
+                            <span *ngSwitchCase="Status.Active"
+                                class="badge badge-success">{{'ClaimType.ValidationStatus.Active'|translate}}</span>
+                        </ng-container>
+                    </td>
+                    <td data-label="Actions" class="align-middle">
+                        <div ngbDropdown>
+                            <button ngbDropdownToggle class="btn btn-lg btn-link">
+                                <i class="bi bi-three-dots"></i>
+                            </button>
+                            <div ngbDropdownMenu>
+                                <div>
+                                    <button class="p-2" ngbDropdownItem
+                                        [routerLink]="['/claim-type/edit', claimType.id]">
+                                        <i class="pr-2 bi bi-pencil"></i><span>&nbsp;</span>{{'ClaimType.Common.Edit'
+                                        |translate}}
+                                    </button>
+                                </div>
+                                <div *ngIf="claimType.status === 1">
+                                    <div class="dropdown-divider"></div>
+                                    <div>
+                                        <button class="p-2" ngbDropdownItem (click)="deleteClaimType(claimType)">
+                                            <i
+                                                class="pr-2 bi bi-trash"></i><span>&nbsp;</span>{{'ClaimType.Common.Delete'
+                                            |translate}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="ml-auto d-flex">
+            <div class="form-group pr-3">
+                <select class="form-control" id="pageSize" (change)="pageSizeChanged($event.target.value)" style="height: 30px;">
+                    <option [value]="5">5</option>
+                    <option [value]="10">10</option>
+                    <option [value]="25">25</option>
+                    <option [value]="50">50</option>
+                    <option [value]="100">100</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <ngb-pagination [collectionSize]="
+                (claimTypes$ | async)?.pagination
+                    .TotalCount
+            " [pageSize]="pageSize" [maxSize]="3" [rotate]="true" [boundaryLinks]="true"
+                (pageChange)="loadClaimTypes($event)"></ngb-pagination>  
+            </div>
+            
+        </div>
+    </div>
+</ng-container>

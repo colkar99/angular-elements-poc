@@ -1,0 +1,24 @@
+<div class="input-group mb-3" (click)="browse.click()">
+    <input
+        style="display: none"
+        #browse
+        [accept]="fileInput.allowedFormat"
+        (change)="onFileUpload($event.target.files)"
+        (click)="$event.target.value = null"
+        type="file"
+        class="custom-file-input"
+        id="customFile"
+    />
+    <input
+        #file
+        type="text"
+        class="form-control app-custom-file-input"
+        readonly
+        [value]="fileName"
+    />
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button">
+            {{ 'ClaimBuilder.ClaimShare.Common.Browse.Label' | translate }}
+        </button>
+    </div>
+</div>

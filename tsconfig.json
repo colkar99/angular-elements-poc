@@ -3,6 +3,16 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "paths": {
+      "claim-builder": [
+        "dist/claim-builder/claim-builder",
+        "dist/claim-builder"
+      ],
+      "claim-type": [
+        "dist/claim-type/claim-type",
+        "dist/claim-type"
+      ],
+    },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,

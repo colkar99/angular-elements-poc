@@ -1,0 +1,318 @@
+{
+    "skusearch": [
+        {
+            "Id": 1,
+            "Sku": "FC Barcelona",
+            "Description": "Ernesto Valverde",
+            "Name": "The best football team in the world!",
+            "Points": 500,
+            "Quantity": 1
+        },
+        {
+            "Id": 21,
+            "Sku": "FC22 Barcelona",
+            "Description": "Ernesto22 Valverde",
+            "Name": "The best football22 team in the world!",
+            "Points": 5002,
+            "Quantity": 1
+        }
+    ],
+
+    "ruleTypes": [
+        { "Id": 1, "Name": "Tier" },
+        { "Id": 1, "Name": "Bonus" }
+    ],
+
+    "ruleConditionFields": [
+        { "Id": 1, "Field": "SKU" },
+        { "Id": 2, "Field": "Product Line" }
+    ],
+
+    "tier-operators": [
+        { "Id": 1, "Operator": "Between" },
+        { "Id": 2, "Operator": "Equals" },
+        { "Id": 3, "Operator": "Greater Than" }
+    ],
+
+    "rule-authors": [{ "Id": 1, "Description": "Created By Me" }],
+
+    "rule-statuses": [
+        { "Id": 2, "Name": "Active" },
+        { "Id": 3, "Name": "Archived" },
+        { "Id": 1, "Name": "Draft" }
+    ],
+
+    "tiers": [
+        {
+            "name": "Tier 1",
+            "createdOnUtc": "2021-07-29T17:30:21.05",
+            "startsOnUtc": "2021-07-29T17:30:21.097",
+            "endsOnUtc": "2021-08-29T17:30:21.097",
+            "status": "1"
+        },
+        {}
+    ],
+    "bundles": [
+        {
+            "id": 4,
+            "name": "(TV AND RTX-3090)",
+            "statusId": 2,
+            "storeId": 1,
+            "expressionId": 1,
+            "createdBy": 1,
+            "updatedBy": 1,
+            "createdOnUtc": "2021-07-29 19:29:18.683",
+            "updatedOnUtc": "2021-07-29 19:29:18.813"
+        },
+        {
+            "id": 5,
+            "name": "(Printer OR SSD)",
+            "statusId": 2,
+            "storeId": 1,
+            "expressionId": 2,
+            "createdBy": 1,
+            "updatedBy": 1,
+            "createdOnUtc": "2021-07-29 19:29:18.813",
+            "updatedOnUtc": "2021-07-29 19:29:18.813"
+        },
+        {
+            "id": 6,
+            "name": "(Printer OR SSD) AND (GPU)",
+            "statusId": 2,
+            "storeId": 1,
+            "expressionId": 3,
+            "createdBy": 1,
+            "updatedBy": 1,
+            "createdOnUtc": "2021-07-29 19:29:18.813",
+            "updatedOnUtc": "2021-07-29 19:29:18.813"
+        }
+    ],
+
+    "bonuses": [
+        {
+            "Id": 10,
+            "Name": "(SKUCount= RTX-3060 = 1 OR SKUCount=RTX-3070 = 1 AND SKUCount = RTX-3080 = 1) - Unlimited PerMatch",
+            "CreatedOnUtc": "2021-07-29 19:29:18.813",
+            "UpdatedOnUtc": "2021-07-29 19:29:18.813",
+            "StartDate": "2021-07-01",
+            "EndDate": "2030-07-01",
+            "StatusId": 1,
+            "StoreId": 1,
+            "CreatedBy": 1,
+            "UpdatedBy": 1,
+            "ExpressionId": 16,
+            "PayoutType": "PerMatch",
+            "LifetimePayoutAllowance": "Unlimited"
+        },
+        {
+            "Id": 11,
+            "Name": "(SKUCount=RTX-3080 > 1) - Unlimited PerMatch",
+            "CreatedOnUtc": "2021-07-29 19:29:18.813",
+            "UpdatedOnUtc": "2021-07-29 19:29:18.813",
+            "StartDate": "2021-07-01",
+            "EndDate": "2030-07-01",
+            "StatusId": 2,
+            "StoreId": 1,
+            "CreatedBy": 1,
+            "UpdatedBy": 1,
+            "ExpressionId": 14,
+            "PayoutType": "PerMatch",
+            "LifetimePayoutAllowance": "Unlimited"
+        },
+        {
+            "Id": 12,
+            "Name": "(PLCount=GeForce 30 series = 2) - Unlimited Accelerator",
+            "CreatedOnUtc": "2021-07-29 19:29:18.813",
+            "UpdatedOnUtc": "2021-07-29 19:29:18.813",
+            "StartDate": "2021-07-01",
+            "EndDate": "2030-07-01",
+            "StatusId": 1,
+            "StoreId": 1,
+            "CreatedBy": 1,
+            "UpdatedBy": 1,
+            "ExpressionId": 13,
+            "PayoutType": "Accelerator",
+            "LifetimePayoutAllowance": "Unlimited"
+        },
+        {
+            "Id": 13,
+            "Name": "(Bundle=(Printer OR SSD) AND (GPU) > 1) - Unlimited PerMatch",
+            "CreatedOnUtc": "2021-07-29 19:29:18.813",
+            "UpdatedOnUtc": "2021-07-29 19:29:18.813",
+            "StartDate": "2021-07-01",
+            "EndDate": "2030-07-01",
+            "StatusId": 1,
+            "StoreId": 1,
+            "CreatedBy": 1,
+            "UpdatedBy": 1,
+            "ExpressionId": 15,
+            "PayoutType": "PerMatch",
+            "LifetimePayoutAllowance": "Unlimited"
+        },
+        {
+            "Id": 14,
+            "Name": "(SKUCount= RTX-3060 = 1 OR SKUCount=RTX-3070 = 1 AND SKUCount = RTX-3080 = 1) - Unlimited PerMatch",
+            "CreatedOnUtc": "2021-07-29 19:29:18.813",
+            "UpdatedOnUtc": "2021-07-29 19:29:18.813",
+            "StartDate": "2021-07-01",
+            "EndDate": "2030-07-01",
+            "StatusId": 1,
+            "StoreId": 1,
+            "CreatedBy": 1,
+            "UpdatedBy": 1,
+            "ExpressionId": 16,
+            "PayoutType": "PerMatch",
+            "LifetimePayoutAllowance": "Unlimited"
+        },
+        {
+            "Id": 15,
+            "Name": "(SKUCount= RTX-3060 = 1 OR SKUCount=RTX-3070 = 1 AND SKUCount = RTX-3080 = 1) - Unlimited PerMatch",
+            "CreatedOnUtc": "2021-07-29 19:29:18.813",
+            "UpdatedOnUtc": "2021-07-29 19:29:18.813",
+            "StartDate": "2021-07-01",
+            "EndDate": "2030-07-01",
+            "StatusId": 1,
+            "StoreId": 1,
+            "CreatedBy": 1,
+            "UpdatedBy": 1,
+            "ExpressionId": 16,
+            "PayoutType": "PerMatch",
+            "LifetimePayoutAllowance": "Unlimited"
+        },
+        {
+            "Id": 16,
+            "Name": "(SKUCount= RTX-3060 = 1 OR SKUCount=RTX-3070 = 1 AND SKUCount = RTX-3080 = 1) - Unlimited PerMatch",
+            "CreatedOnUtc": "2021-07-29 19:29:18.813",
+            "UpdatedOnUtc": "2021-07-29 19:29:18.813",
+            "StartDate": "2021-07-01",
+            "EndDate": "2030-07-01",
+            "StatusId": 1,
+            "StoreId": 1,
+            "CreatedBy": 1,
+            "UpdatedBy": 1,
+            "ExpressionId": 16,
+            "PayoutType": "PerMatch",
+            "LifetimePayoutAllowance": "Unlimited"
+        },
+        {
+            "Id": 17,
+            "Name": "(SKUCount= RTX-3060 = 1 OR SKUCount=RTX-3070 = 1 AND SKUCount = RTX-3080 = 1) - Unlimited PerMatch",
+            "CreatedOnUtc": "2021-07-29 19:29:18.813",
+            "UpdatedOnUtc": "2021-07-29 19:29:18.813",
+            "StartDate": "2021-07-01",
+            "EndDate": "2030-07-01",
+            "StatusId": 1,
+            "StoreId": 1,
+            "CreatedBy": 1,
+            "UpdatedBy": 1,
+            "ExpressionId": 16,
+            "PayoutType": "PerMatch",
+            "LifetimePayoutAllowance": "Unlimited"
+        },
+        {
+            "Id": 18,
+            "Name": "(SKUCount= RTX-3060 = 1 OR SKUCount=RTX-3070 = 1 AND SKUCount = RTX-3080 = 1) - Unlimited PerMatch",
+            "CreatedOnUtc": "2021-07-29 19:29:18.813",
+            "UpdatedOnUtc": "2021-07-29 19:29:18.813",
+            "StartDate": "2021-07-01",
+            "EndDate": "2030-07-01",
+            "StatusId": 1,
+            "StoreId": 1,
+            "CreatedBy": 1,
+            "UpdatedBy": 1,
+            "ExpressionId": 16,
+            "PayoutType": "PerMatch",
+            "LifetimePayoutAllowance": "Unlimited"
+        },
+        {
+            "Id": 19,
+            "Name": "(SKUCount= RTX-3060 = 1 OR SKUCount=RTX-3070 = 1 AND SKUCount = RTX-3080 = 1) - Unlimited PerMatch",
+            "CreatedOnUtc": "2021-07-29 19:29:18.813",
+            "UpdatedOnUtc": "2021-07-29 19:29:18.813",
+            "StartDate": "2021-07-01",
+            "EndDate": "2030-07-01",
+            "StatusId": 1,
+            "StoreId": 1,
+            "CreatedBy": 1,
+            "UpdatedBy": 1,
+            "ExpressionId": 16,
+            "PayoutType": "PerMatch",
+            "LifetimePayoutAllowance": "Unlimited"
+        },
+        {
+            "Id": 20,
+            "Name": "(SKUCount=RTX-3060 = 1 OR SKUCount=RTX-3070 = 1) AND (PLCount=980 PRO PCIe SSD > 0) - Unlimited PerMatch",
+            "CreatedOnUtc": "2021-07-29 19:29:18.813",
+            "UpdatedOnUtc": "2021-07-29 19:29:18.813",
+            "StartDate": "2021-07-01",
+            "EndDate": "2030-07-01",
+            "StatusId": 1,
+            "StoreId": 1,
+            "CreatedBy": 1,
+            "UpdatedBy": 1,
+            "ExpressionId": 17,
+            "PayoutType": "PerMatch",
+            "LifetimePayoutAllowance": "Unlimited"
+        },
+        {
+            "Id": 21,
+            "Name": "(SKUCount=RTX-3060 = 1 AND SKUCount=RTX-3070) OR (PLCount=980 PRO PCIe SSD > 1) - Unlimited PerMatch",
+            "CreatedOnUtc": "2021-07-29 19:29:18.813",
+            "UpdatedOnUtc": "2021-07-29 19:29:18.813",
+            "StartDate": "2021-07-01",
+            "EndDate": "2030-07-01",
+            "StatusId": 1,
+            "StoreId": 1,
+            "CreatedBy": 1,
+            "UpdatedBy": 1,
+            "ExpressionId": 18,
+            "PayoutType": "PerMatch",
+            "LifetimePayoutAllowance": "Unlimited"
+        },
+        {
+            "Id": 22,
+            "Name": "(Bundle=TV AND RTX-3090 = 1) AND (PLCount=981 PRO PCIe SSD = 1) - Unlimited PerMatch",
+            "CreatedOnUtc": "2021-07-29 19:29:18.813",
+            "UpdatedOnUtc": "2021-07-29 19:29:18.813",
+            "StartDate": "2021-07-01",
+            "EndDate": "2030-07-01",
+            "StatusId": 1,
+            "StoreId": 1,
+            "CreatedBy": 1,
+            "UpdatedBy": 1,
+            "ExpressionId": 19,
+            "PayoutType": "PerMatch",
+            "LifetimePayoutAllowance": "Unlimited"
+        },
+        {
+            "Id": 23,
+            "Name": "(Bundle=TV AND RTX-3090 > 1) OR (PLCount=981 PRO PCIe SSD > 1) - Unlimited PerMatch",
+            "CreatedOnUtc": "2021-07-29 19:29:18.813",
+            "UpdatedOnUtc": "2021-07-29 19:29:18.813",
+            "StartDate": "2021-07-01",
+            "EndDate": "2030-07-01",
+            "StatusId": 1,
+            "StoreId": 1,
+            "CreatedBy": 1,
+            "UpdatedBy": 1,
+            "ExpressionId": 20,
+            "PayoutType": "PerMatch",
+            "LifetimePayoutAllowance": "Unlimited"
+        },
+        {
+            "Id": 24,
+            "Name": "(Bundle=TV AND RTX-3090 > 1 OR Bundle=Printer OR SSD > 1) - Unlimited PerMatch",
+            "CreatedOnUtc": "2021-07-29 19:29:18.813",
+            "UpdatedOnUtc": "2021-07-29 19:29:18.813",
+            "StartDate": "2021-07-01",
+            "EndDate": "2030-07-01",
+            "StatusId": 1,
+            "StoreId": 1,
+            "CreatedBy": 1,
+            "UpdatedBy": 1,
+            "ExpressionId": 21,
+            "PayoutType": "PerMatch",
+            "LifetimePayoutAllowance": "Unlimited"
+        }
+    ]
+}

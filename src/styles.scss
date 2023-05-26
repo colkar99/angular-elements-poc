@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+@import 'styles/mat-theme.scss';
+
+.mat-autocomplete-panel {
+    max-height: 200px !important;
+
+    .mat-option {
+        padding: 0px 4px !important;
+        font-family: 'Questrial', sans-serif !important;
+        font-size: 10px;
+        height: 20px;
+    }
+}
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';

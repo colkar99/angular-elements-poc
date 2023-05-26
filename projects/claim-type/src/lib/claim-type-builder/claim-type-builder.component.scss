@@ -1,0 +1,54 @@
+.dropdown-toggle::after {
+    content: none;
+}
+
+.expression-field-row-conflict {
+    border: 1px solid red !important;
+    border-radius: 3px;
+    margin: 5px;
+}
+
+.borderBottom {
+    border-bottom: 1px solid #dee2e6 !important;
+}
+
+div .borderBottom:last-child {
+    border-bottom: none !important;
+}
+
+.chip-disabled {
+    background-color: #e9ecef !important;
+}
+
+::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: #495057;
+}
+
+:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #495057;
+    opacity: 1;
+}
+
+::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #495057;
+    opacity: 1;
+}
+
+
+::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: #495057;
+}
+
+::placeholder {
+    /* Modern browsers */
+    color: #495057;
+}
+.chip-disabled {
+    background-color: #e9ecef !important;
+}
+
+

@@ -1,0 +1,11 @@
+.dropdown-toggle::after {
+    content: none;
+}
+
+.absoluteInherit {
+    width: inherit !important;
+}
+
+.dropdown-menu {
+    font-size: inherit !important;
+}

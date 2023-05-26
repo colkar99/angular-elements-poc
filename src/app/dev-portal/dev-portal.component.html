@@ -1,0 +1,392 @@
+<a (click)="backToDev()">Back to Dev-portal</a>
+<div class="wrapper-bg-custom full-screen" *ngIf="currentPage == 1">
+  <div class="p-5">
+    <h1 class="mb-5">Welcome to the Developer Portal</h1>
+    <div class="mb-4">
+      <div *blockUI="'cm-auth'">
+        <ng-container *ngIf="cmAuthStatus.isLoginInProgress">
+          <ngb-alert [dismissible]="false" type="primary">
+            Authentication in progress...
+          </ngb-alert>
+        </ng-container>
+
+        <ng-container *ngIf="!cmAuthStatus.isLoginInProgress">
+          <ng-template
+            #authentication_status
+            [ngIf]="cmAuthStatus.isAuthenticated"
+            [ngIfElse]="loggedOut"
+          >
+            <ngb-alert [dismissible]="false" type="success">
+              <strong>Success!</strong> Authenticated with Channel Manager.
+            </ngb-alert>
+          </ng-template>
+          <ng-template #loggedOut>
+            <p>
+              <ngb-alert [dismissible]="false" type="warning">
+                <strong>Warning!</strong> Unable to authenticate with Channel
+                Manager.
+              </ngb-alert>
+            </p>
+          </ng-template>
+        </ng-container>
+
+        <button class="btn btn-secondary mb-4" (click)="loginChannelManager()">
+          Retry Login
+        </button>
+      </div>
+
+      <div *blockUI="'prm-auth'">
+        <ng-container *ngIf="prmAuthStatus.isLoginInProgress">
+          <ngb-alert [dismissible]="false" type="primary">
+            Authentication in progress...
+          </ngb-alert>
+        </ng-container>
+
+        <ng-container *ngIf="!prmAuthStatus.isLoginInProgress">
+          <ng-template
+            #authentication_status
+            [ngIf]="prmAuthStatus.isAuthenticated"
+            [ngIfElse]="loggedOut"
+          >
+            <ngb-alert [dismissible]="false" type="success">
+              <strong>Success!</strong> Authenticated with PrmOne.
+            </ngb-alert>
+          </ng-template>
+          <ng-template #loggedOut>
+            <p>
+              <ngb-alert [dismissible]="false" type="warning">
+                <strong>Warning!</strong> Unable to authenticate with PrmOne.
+              </ngb-alert>
+            </p>
+          </ng-template>
+        </ng-container>
+
+        <button class="btn btn-secondary mb-4" (click)="loginPrmOne()">
+          Retry Login
+        </button>
+      </div>
+
+      <p class="lead">
+        Once logged in, expand the desired accordion feature in order to
+        populate the minimum input criteria and bootstrap the component.
+      </p>
+
+      <ngb-accordion #acc="ngbAccordion">
+        <ngb-panel id="toggle-1">
+          <ng-template ngbPanelTitle>
+            <span class="accordion-header">
+              <strong>Claim Builder</strong>
+            </span>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <div [formGroup]="claimBuilderFormGroup">
+              <div class="form-group row">
+                <label
+                  for="fixedPointMinimumInvoiceDate"
+                  class="col-sm-3 col-form-label"
+                >
+                  Fixed Point Minimum Invoice Date
+                </label>
+                <div class="col-sm-4">
+                  <input
+                    formControlName="fixedPointMinimumInvoiceDate"
+                    type="date"
+                    class="form-control"
+                    id="fixedPointMinimumInvoiceDate"
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label
+                  for="daysInPastMinimumInvoiceDateOffset"
+                  class="col-sm-3 col-form-label required-field"
+                >
+                  Days In Past Minimum Invoice Date Offset
+                </label>
+                <div class="col-sm-4">
+                  <input
+                    formControlName="daysInPastMinimumInvoiceDateOffset"
+                    type="number"
+                    class="form-control"
+                    id="daysInPastMinimumInvoiceDateOffset"
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label
+                  for="skuQuantityLimit"
+                  class="col-sm-3 col-form-label required-field"
+                >
+                  SKU Quantity Limit
+                </label>
+                <div class="col-sm-4">
+                  <input
+                    formControlName="skuQuantityLimit"
+                    type="number"
+                    class="form-control"
+                    id="skuQuantityLimit"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label
+                  for="maxShares"
+                  class="col-sm-3 col-form-label required-field"
+                >
+                  Max Shares
+                </label>
+                <div class="col-sm-4">
+                  <input
+                    formControlName="maxShares"
+                    type="number"
+                    class="form-control"
+                    id="maxShares"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="loadExistingClaim" class="col-sm-3 col-form-label">
+                  Load Existing Claim
+                </label>
+                <div class="col-sm-4">
+                  <label class="switch">
+                    <input
+                      type="checkbox"
+                      id="loadExistingClaim"
+                      formControlName="loadExistingClaim"
+                    />
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="loadExistingClaim" class="col-sm-3 col-form-label">
+                  Delivery Date Enabled
+                </label>
+                <div class="col-sm-4">
+                  <label class="switch">
+                    <input
+                      type="checkbox"
+                      id="deliveryDateEnabled"
+                      formControlName="deliveryDateEnabled"
+                    />
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="loadExistingClaim" class="col-sm-3 col-form-label">
+                  Is Bulk Partner
+                </label>
+                <div class="col-sm-4">
+                  <label class="switch">
+                    <input
+                      type="checkbox"
+                      id="isBulkPartner"
+                      formControlName="isBulkPartner"
+                    />
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="isCapsEnabled" class="col-sm-3 col-form-label">
+                  Caps Enabled
+                </label>
+                <div class="col-sm-4">
+                  <label class="switch">
+                    <input
+                      type="checkbox"
+                      id="isCapsEnabled"
+                      formControlName="capsEnabled"
+                    />
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </div>
+              <div
+                *ngIf="
+                  this.claimBuilderFormGroup.get('loadExistingClaim').value
+                "
+              >
+                <div class="form-group row">
+                  <label for="claimId" class="col-sm-3 col-form-label">
+                    Claim ID
+                  </label>
+                  <div class="col-sm-4">
+                    <input
+                      formControlName="claimId"
+                      type="number"
+                      class="form-control"
+                      id="claimId"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="loadSummary" class="col-sm-3 col-form-label">
+                    Load Summary
+                  </label>
+                  <div class="col-sm-4">
+                    <label class="switch">
+                      <input
+                        type="checkbox"
+                        id="loadSummary"
+                        formControlName="loadSummary"
+                      />
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <button
+                class="btn btn-secondary"
+                (click)="bootstrapClaimBuilder()"
+                [disabled]="!claimBuilderFormGroup.valid ? true : null"
+              >
+                Bootstrap!
+              </button>
+            </div>
+          </ng-template>
+        </ngb-panel>
+
+        <ngb-panel id="toggle-2">
+          <ng-template ngbPanelTitle>
+            <span class="accordion-header">
+              <strong>Bonus Incentives</strong>
+            </span>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <div class="d-flex p-2">
+              <button class="btn btn-secondary" (click)="bootstrapBonus()">
+                Bootstrap Bonus!
+              </button>
+              <button class="btn btn-secondary" (click)="bootstrapBundle()">
+                Bootstrap Bundle!
+              </button>
+            </div>
+          </ng-template>
+        </ngb-panel>
+
+        <ngb-panel id="toggle-3">
+          <ng-template ngbPanelTitle>
+            <span class="accordion-header">
+              <strong>CAPS</strong>
+            </span>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <div class="d-flex p-2">
+              <button class="btn btn-secondary" (click)="bootstrapCaps()">
+                Bootstrap CAPS!
+              </button>
+            </div>
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-4">
+          <ng-template ngbPanelTitle>
+            <span class="accordion-header">
+              <strong>Claim Types</strong>
+            </span>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <div class="d-flex p-2">
+              <button class="btn btn-secondary" (click)="bootstrapClaimType()">
+                Bootstrap Claim Types!
+              </button>
+            </div>
+          </ng-template>
+        </ngb-panel>
+
+        <ngb-panel id="toggle-5">
+          <ng-template ngbPanelTitle>
+            <span class="accordion-header">
+              <strong>Top Achievers Promotion</strong>
+            </span>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <div [formGroup]="globeTrotterFormGroup">
+              <div class="form-group row">
+                <label
+                  for="skuQuantityLimit"
+                  class="col-sm-3 col-form-label required-field"
+                >
+                  Top Achievers Promotion Default Location Id
+                </label>
+                <div class="col-sm-4">
+                  <input
+                    formControlName="globeTrotterDefaultLocationId"
+                    type="number"
+                    class="form-control"
+                    id="globeTrotterDefaultLocationId"
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label required-field">
+                  Top Achievers Promotion Game Id
+                </label>
+                <div class="col-sm-4">
+                  <input
+                    formControlName="globeTrotterGameId"
+                    type="number"
+                    class="form-control"
+                    id="globeTrotterGameId"
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label required-field">
+                  Top Achievers Promotion Engagement Tracking Id
+                </label>
+                <div class="col-sm-4">
+                  <input
+                    formControlName="globeTrotterEngagementTrackingId"
+                    type="number"
+                    class="form-control"
+                    id="globeTrotterEngagementTrackingId"
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label required-field">
+                  Top Achievers Promotion Theme
+                </label>
+                <div class="col-sm-4">
+                  <input
+                    formControlName="globeTrotterTheme"
+                    class="form-control"
+                    id="globeTrotterTheme"
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label required-field">
+                  Top Achievers Promotion Terms And Condition URL
+                </label>
+                <div class="col-sm-4">
+                  <input
+                    formControlName="globeTrotterTerms"
+                    class="form-control"
+                    id="globeTrotterTerms"
+                  />
+                </div>
+              </div>
+              <button
+                class="btn btn-secondary"
+                (click)="bootstrapGlobeTrotters()"
+                [disabled]="!globeTrotterFormGroup.valid ? true : null"
+              >
+                Bootstrap Top Achievers Promotion!
+              </button>
+            </div>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
+    </div>
+  </div>
+</div>
+
+<div class="" *ngIf="currentPage == 2">
+  <lib-claim-type></lib-claim-type>
+</div>
